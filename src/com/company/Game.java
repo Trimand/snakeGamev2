@@ -36,7 +36,7 @@ public class Game {
         BufferedImage img = null;
 
         try {
-            img = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\lol.jpg"));
+            img = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\Kappa.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
