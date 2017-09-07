@@ -3,57 +3,59 @@ package com.company;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Game {
+import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 
+public class Game {
+    private boolean leftDirection = false;
+    private boolean rightDirection = true;
+    private boolean upDirection = false;
+    private boolean downDirection = false;
     private boolean running;
     private static int UPDATE_RATE = 30;
-    public JFrame frame;
+
 
     public void run() {
-
-        frame = new JFrame("SNAKE");
+        JFrame frame = new JFrame("Snake");
         frame.setContentPane(new GamePanel());
-        frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+        frame.pack();
+
         frame.setPreferredSize(new Dimension(GamePanel.WIDTH, GamePanel.HEIGHT));
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         running = true;
-        drawLevelBackground();
-
-
-
-        loopLogic();
+        //drawLevelBackground();
+        addKeyListener(new TAdapter());
 
     }
 
-    public void drawLevelBackground(){
+   /* public void drawLevelBackground(){
         BufferedImage img = null;
 
         try {
-            img = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\Kappa.jpg"));
+            img = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\Kappa2.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         Graphics g = frame.getGraphics();
-        g.drawImage(img, 0,0,null);
+        g.drawImage(img, -300,0,null);
+    }*/
+
+    private class TAdapter extends KeyAdapter {
     }
-    public void loopLogic() {
-        //GAME LOGIC
-        //Update dit screen/image/frame, whatever
-        try {
-            Thread.sleep(1000 / UPDATE_RATE);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (running) {
-            loopLogic();
-        }
-    }
+
+
+
+
+
+
 }
+
 
